@@ -2,17 +2,18 @@
 
 # ⚡ claude-code-deepseek
 
-**Run Claude Code CLI on DeepSeek's Anthropic-compatible API**
+**Run Claude Code CLI on DeepSeek's Anthropic-compatible API**<br>
 Built for security researchers & bug bounty hunters
 
 <br>
 
-```
-┌──(user㉿vps)-[~]
-└─$ claude-ds
- ▐▛███▜▌   Claude Code v2.1.166
-▝▜█████▛▘  deepseek-v4-pro with high effort · API Usage Billing
-  ▘▘ ▝▝    /home/user
+```bash
+$ claude-ds
+
+  Claude Code v2.1.166
+  deepseek-v4-pro with high effort · API Usage Billing
+  /home/user
+
 ❯ Try "how does <filepath> work?"
 ```
 
