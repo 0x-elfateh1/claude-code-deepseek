@@ -1,0 +1,21 @@
+# API keys / secrets
+.env
+.env.*
+*.key
+secrets.*
+
+# Claude Code local state
+.claude/todos/
+.claude/settings.local.json
+
+# Superpowers brainstorm artifacts
+.superpowers/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp

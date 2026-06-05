@@ -1,9 +1,43 @@
-# Claude Code × DeepSeek — Setup Guide
+<div align="center">
 
-> Run Claude Code CLI with DeepSeek's Anthropic-compatible API.
-> ~350M tokens for ~$6 · Perfect for high-volume security automation & bug bounty workflows.
+# ⚡ claude-code-deepseek
 
-**By [0x-elfateh](https://www.linkedin.com/in/0x-elfateh/) · Security Researcher & Bug Bounty Hunter**
+**Run Claude Code CLI on DeepSeek's Anthropic-compatible API**  
+Built for security researchers & bug bounty hunters
+
+```
+┌──(user㉿vps)-[~]
+└─$ claude-ds
+ ▐▛███▜▌   Claude Code v2.1.166
+▝▜█████▛▘  deepseek-v4-pro with high effort · API Usage Billing
+  ▘▘ ▝▝    /home/user
+❯ Try "how does <filepath> work?"
+```
+
+![DeepSeek](https://img.shields.io/badge/DeepSeek-v4--pro-blue?style=flat-square)
+![Claude Code](https://img.shields.io/badge/Claude_Code-2.x-orange?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+![Cost](https://img.shields.io/badge/~%246_per_350M_tokens-💸-yellow?style=flat-square)
+![Stars](https://img.shields.io/github/stars/0x-elfateh1/claude-code-deepseek?style=flat-square&color=gold)
+
+</div>
+
+---
+
+## Table of Contents
+
+- [Why DeepSeek?](#why-deepseek)
+- [Model IDs](#model-ids)
+- [Quick Setup](#quick-setup)
+- [Setup Methods](#setup-methods)
+  - [Method 1 — Global](#method-1--global-all-deepseek-always)
+  - [Method 2 — Per-Project](#method-2--per-project-selective)
+  - [Method 3 — Shell Function ⭐](#method-3--shell-function-per-session-)
+  - [Method 4 — Automation / CI](#method-4--automation--ci)
+- [Reverting to Anthropic](#reverting-to-anthropic-subscription)
+- [Key Notes](#key-notes)
+- [Files](#files)
+- [Author](#author)
 
 ---
 
@@ -29,7 +63,7 @@
 
 > ⚠️ `deepseek-chat` and `deepseek-reasoner` are **deprecated July 24 2026**. Don't use them.
 
-**Auto-mapping:** DeepSeek maps Claude names — `claude-opus-*` → v4-pro, `claude-haiku/sonnet-*` → v4-flash.
+**Auto-mapping:** DeepSeek maps Claude names automatically — `claude-opus-*` → v4-pro, `claude-haiku/sonnet-*` → v4-flash.
 
 ---
 
@@ -56,6 +90,8 @@ See ready-to-use snippets in [`configs/`](./configs/).
 
 ### Method 1 — Global (All DeepSeek, Always)
 
+Best if you want DeepSeek for everything.
+
 ```bash
 cat >> ~/.zshrc << 'EOF'
 export ANTHROPIC_BASE_URL=https://api.deepseek.com/anthropic
@@ -66,113 +102,3 @@ export ANTHROPIC_DEFAULT_SONNET_MODEL=deepseek-v4-pro
 export ANTHROPIC_DEFAULT_HAIKU_MODEL=deepseek-v4-flash
 export CLAUDE_CODE_SUBAGENT_MODEL=deepseek-v4-flash
 export CLAUDE_CODE_EFFORT_LEVEL=max
-EOF
-source ~/.zshrc
-```
-
----
-
-### Method 2 — Per-Project (Selective)
-
-Create `.claude/settings.json` in your project folder. See [`configs/settings.json`](./configs/settings.json).
-
----
-
-### Method 3 — Shell Function (Per-Session) ⭐ Recommended
-
-> ⚠️ Use a **function**, not an alias. Multi-line aliases are fragile in zsh.
-
-Add to `~/.zshrc`:
-
-```bash
-claude-ds() {
-  ANTHROPIC_BASE_URL="https://api.deepseek.com/anthropic" \
-  ANTHROPIC_AUTH_TOKEN="<your_deepseek_key>" \
-  ANTHROPIC_MODEL="deepseek-v4-pro" \
-  ANTHROPIC_DEFAULT_OPUS_MODEL="deepseek-v4-pro" \
-  ANTHROPIC_DEFAULT_SONNET_MODEL="deepseek-v4-pro" \
-  ANTHROPIC_DEFAULT_HAIKU_MODEL="deepseek-v4-flash" \
-  CLAUDE_CODE_SUBAGENT_MODEL="deepseek-v4-flash" \
-  claude "$@"
-}
-```
-
-- `claude` → Anthropic subscription (unchanged)
-- `claude-ds` → DeepSeek session
-- `claude-ds -p "task"` → passes all flags through via `"$@"`
-
----
-
-### Method 4 — Automation / CI
-
-```bash
-ANTHROPIC_BASE_URL="https://api.deepseek.com/anthropic" \
-ANTHROPIC_AUTH_TOKEN="<your_deepseek_key>" \
-ANTHROPIC_MODEL="deepseek-v4-pro" \
-CLAUDE_CODE_SUBAGENT_MODEL="deepseek-v4-flash" \
-claude --dangerously-skip-permissions -p "your task here"
-```
-
----
-
-## VPS Install (Ubuntu)
-
-```bash
-# One-command installer:
-DEEPSEEK_KEY=sk-... bash <(curl -s https://raw.githubusercontent.com/0x-elfateh1/claude-code-deepseek/main/scripts/setup.sh)
-```
-
-Or manually — see [`scripts/setup.sh`](./scripts/setup.sh).
-
----
-
-## Reverting to Anthropic Subscription
-
-```bash
-unset ANTHROPIC_BASE_URL ANTHROPIC_AUTH_TOKEN ANTHROPIC_MODEL \
-      ANTHROPIC_DEFAULT_OPUS_MODEL ANTHROPIC_DEFAULT_SONNET_MODEL \
-      ANTHROPIC_DEFAULT_HAIKU_MODEL CLAUDE_CODE_SUBAGENT_MODEL \
-      CLAUDE_CODE_EFFORT_LEVEL
-```
-
-Permanent: remove the export lines from `~/.zshrc` / `~/.bashrc`.
-
----
-
-## Key Notes
-
-- `ANTHROPIC_BASE_URL` is per-process global — can't split Anthropic/DeepSeek in the same session
-- `CLAUDE_CODE_SUBAGENT_MODEL` controls spawned subagent model
-- Use `ANTHROPIC_AUTH_TOKEN` not `ANTHROPIC_API_KEY` for Claude Code
-- Get your key at [platform.deepseek.com](https://platform.deepseek.com)
-
----
-
-## Files
-
-```
-configs/
-├── zshrc.snippet       # zsh env block + claude-ds function
-├── bashrc.snippet      # bash env block (Ubuntu VPS)
-├── settings.json       # .claude/settings.json per-project template
-└── windows.ps1         # Windows PowerShell config
-scripts/
-└── setup.sh            # Ubuntu VPS one-command installer
-```
-
----
-
-## Sources
-
-- [DeepSeek Anthropic API Docs](https://api-docs.deepseek.com/guides/anthropic_api)
-- [DeepSeek Coding Agents Guide](https://api-docs.deepseek.com/guides/coding_agents)
-- [Claude Code Model Config Docs](https://code.claude.com/docs/en/model-config)
-
----
-
-## Author
-
-**0x-elfateh** — Security Researcher & Bug Bounty Hunter
-🔗 [linkedin.com/in/0x-elfateh](https://www.linkedin.com/in/0x-elfateh/)
-
-If this helped you, leave a ⭐
