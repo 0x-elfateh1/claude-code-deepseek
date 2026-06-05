@@ -2,26 +2,17 @@
 
 # ⚡ claude-code-deepseek
 
-**Run Claude Code CLI on DeepSeek's Anthropic-compatible API**<br>
-Built for security researchers & bug bounty hunters
+> Run Claude Code CLI on DeepSeek's Anthropic-compatible API.
+> Built for security researchers & bug bounty hunters.
 
-<br>
+[![DeepSeek](https://img.shields.io/badge/DeepSeek-v4--pro-4A90D9?style=for-the-badge&logoColor=white)](https://platform.deepseek.com)
+[![Claude Code](https://img.shields.io/badge/Claude_Code-2.x-E8720C?style=for-the-badge)](https://claude.ai/code)
+[![License: MIT](https://img.shields.io/badge/License-MIT-22863A?style=for-the-badge)](./LICENSE)
+[![Stars](https://img.shields.io/github/stars/0x-elfateh1/claude-code-deepseek?style=for-the-badge&color=gold&label=Stars)](https://github.com/0x-elfateh1/claude-code-deepseek/stargazers)
 
-```
-
-
-<br>
-
-![DeepSeek](https://img.shields.io/badge/DeepSeek-v4--pro-blue?style=for-the-badge)
-![Claude Code](https://img.shields.io/badge/Claude_Code-2.x-orange?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![Stars](https://img.shields.io/github/stars/0x-elfateh1/claude-code-deepseek?style=for-the-badge&color=gold)
-
-<br>
-
-![Cost](https://img.shields.io/badge/~%246_per_350M_tokens-💸-yellow?style=flat-square)
-![Shell](https://img.shields.io/badge/zsh%20%7C%20bash%20%7C%20powershell-supported-blueviolet?style=flat-square)
-![Topics](https://img.shields.io/badge/security--research-bug--bounty-red?style=flat-square)
+![Cost](https://img.shields.io/badge/~%246%20per%20350M%20tokens-💸-F0B429?style=flat-square)
+![Platforms](https://img.shields.io/badge/Linux%20%7C%20macOS%20%7C%20Windows%20%7C%20VPS-supported-6E40C9?style=flat-square)
+![Topics](https://img.shields.io/badge/security--research-bug--bounty-E53E3E?style=flat-square)
 
 </div>
 
