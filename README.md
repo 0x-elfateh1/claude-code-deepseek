@@ -8,14 +8,7 @@ Built for security researchers & bug bounty hunters
 <br>
 
 ```
-$ claude-ds
 
-Claude Code v2.1.166
-deepseek-v4-pro with high effort · API Usage Billing
-/home/user
-
-❯ Try "how does [filepath] work?"
-```
 
 <br>
 
